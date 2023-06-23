@@ -13,3 +13,11 @@ Black buttons, Cleanse, FMA, Breath, Dive, Bombs, Lasers, and Arrows should be p
 Bombs, Lasers, and Arrows timers will loop automatically. Bombs will most likely de-sync depending on server lag.
 
 FMA timer may not be accurate with a Wild Hunter or Zero in your party.
+
+
+## Additional voice function
+
+原github地址：https://github.com/Saltette/Saltette.github.io
+
+添加提示语音（炸弹、激光、黑暗箭、大招提醒、喷火、传送）
+

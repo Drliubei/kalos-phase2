@@ -1,11 +1,12 @@
-const warningBomb = 3;
+const warningBomb = 2;
 const warningBreath = 10;
 const warningDive = 5;
 const warningFMA = 30;
+const warningFMA10 = 10
 const warningSystemFail = 30;
 const warningUFO = 5;
-const warningLasers = 5;
-const warningArrows = 5;
+const warningLasers = 3;
+const warningArrows = 3;
 
 const maxSystems = 4;
 const minSystems = 0;
@@ -59,6 +60,7 @@ var bindSec = 0;
 var visibleInfo = false;
 
 var fmaTimerOn = false;
+
 
 function toggleInfo() {
     if (visibleInfo == false) {
@@ -130,6 +132,7 @@ function startPhase() {
     testIndicator();
     bindIndicator();
     systemIndicator();
+    playAudio("干死机器狗.mp3")
 }
 
 function incSystems () {
@@ -318,6 +321,9 @@ function systemIndicator() {
 
 
 function checkWarningBomb() {
+    if (bombSec == warningBomb) {
+        playAudio("炸弹.mp3")
+        }
     if (bombSec <= warningBomb) {
         document.getElementById("bombTimer").style.color = 'red';
     }
@@ -356,9 +362,13 @@ function bombCancel(){
 
 
 function checkWarningBreath() {
+    if (breathSec == warningBreath) {
+        playAudio("喷火.mp3")
+        }
     if (breathSec <= warningBreath) {
         document.getElementById("breathTimer").style.color = 'red';
         document.getElementById("breathBox").style.border = '3px solid red';
+
     }
     else {
         document.getElementById("breathTimer").style.color = 'black';
@@ -405,9 +415,13 @@ function breathCancel() {
 
 
 function checkWarningDive() {
+    if (diveSec == warningDive) {
+        playAudio("传送.mp3")
+    }
     if (diveSec <= warningDive) {
         document.getElementById("diveTimer").style.color = 'red';
         document.getElementById("diveBox").style.border = '3px solid red';
+
     } else {
         document.getElementById("diveTimer").style.color = 'black';
         document.getElementById("diveBox").style.border = '3px solid transparent';
@@ -433,7 +447,7 @@ function diveTimer() {
     checkWarningDive();
     clearInterval(diveCountdown);
     }
-    
+
 
 
 
@@ -446,6 +460,12 @@ function diveTimer() {
 
 
 function checkWarningFMA() {
+    if (fmaSec == warningFMA) {
+        playAudio("30秒大招.mp3")
+        }
+    if (fmaSec == warningFMA10) {
+        playAudio("10秒大招.mp3")
+        }
     if (fmaSec <= warningFMA) {
         document.getElementById("fmaTimer").style.color = 'red';
         document.getElementById("fmaBox").style.border = '3px solid red';
@@ -549,6 +569,9 @@ function systemCleanse() {
 
 
 function checkWarningLasers() {
+    if (lasersSec == warningLasers) {
+        playAudio("左侧激光.mp3")
+        }
     if (lasersSec <= warningLasers) {
         document.getElementById("lasersTimer").style.color = 'red';
         //document.getElementById("lasersBox").style.border = '3px solid red';
@@ -580,9 +603,14 @@ function lasersCancel(){
 }
 
 function checkWarningArrows() {
+    if (arrowsSec == warningArrows){
+        playAudio("右侧黑暗箭.mp3")
+        }
+
     if (arrowsSec <= warningArrows) {
         document.getElementById("arrowsTimer").style.color = 'red';
         //document.getElementById("arrowsBox").style.border = '3px solid red';
+
     }
     else {
         document.getElementById("arrowsTimer").style.color = 'black';
@@ -608,4 +636,10 @@ function arrowsCancel(){
     document.getElementById('arrowsTimer').innerHTML = "--";
     checkWarningArrows();
     clearInterval(arrowsCountdown);
+}
+
+function playAudio(filename){
+    const audioFolder = './audios/';
+    const audio = new Audio(`${audioFolder}${filename}`);
+    audio.play();
 }
