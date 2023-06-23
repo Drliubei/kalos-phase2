@@ -478,6 +478,7 @@ function checkWarningFMA() {
     }
 }
 function fmaTimer(sec) {
+    console.log("fmaTimer called with sec =", sec);
     fmaTimerOn = true;
     fmaSec = sec;
     document.getElementById('fmaTimer').innerHTML = fmaSec;
@@ -488,7 +489,7 @@ function fmaTimer(sec) {
         document.getElementById('fmaTimer').innerHTML = fmaSec;
         checkWarningFMA();
         if (fmaSec <= 0) {
-            clearInterval(fmaCountdown);
+            fmaSec = fmaCooldown;
         }
     }, 1000);
 }
